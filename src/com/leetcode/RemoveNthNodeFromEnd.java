@@ -2,10 +2,15 @@ package com.leetcode;
 
 /**
  * @author himanshu
- * Remove nth node from end in a linked list
- * Definition for singly-linked list.
  */
 public class RemoveNthNodeFromEnd {
+	
+	/**
+	 * Remove nth node from end
+	 * @param head
+	 * @param n
+	 * @return
+	 */
 	public static ListNode removeNthFromEnd(ListNode head, int n) {
         if (n == 0) return head;
         ListNode dummy = new ListNode(0);
@@ -27,7 +32,19 @@ public class RemoveNthNodeFromEnd {
         return head;
     }
 	
+	/**
+	 * Delete current node
+	 * @param node
+	 */
+	public static void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+	
 	public static void main(String args[]) {
 		System.out.println(removeNthFromEnd(ListNode.listNodeBuilder(5), 2));
+		ListNode head = ListNode.listNodeBuilder(4);
+		deleteNode(head.next.next);
+		System.out.println(head);
 	}
 }
