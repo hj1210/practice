@@ -30,10 +30,22 @@ public class MaxProfitSet {
         return max;
     }
     
+    public static int maxProfitWithCooldown(int[] prices) {
+        int sell = 0, prev_sell = 0, buy = Integer.MIN_VALUE, prev_buy;
+        for (int price : prices) {
+            prev_buy = buy;
+            buy = Math.max(prev_sell - price, prev_buy);
+            prev_sell = sell;
+            sell = Math.max(prev_buy + price, prev_sell);
+        }
+        return sell;
+    }
+    
 	public static void main(String[] args) {
-		int[] arr = {7,1,5,3,6,4};
+		int[] arr = {1, 2, 3, 0, 2};
 		System.out.println(maxProfit1(arr));
 		System.out.println(maxProfit2(arr));
+		System.out.println(maxProfitWithCooldown(arr));
 	}
 
 }
